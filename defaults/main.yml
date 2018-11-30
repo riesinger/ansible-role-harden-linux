@@ -1,7 +1,6 @@
 ---
-# Some default settings for deploy user
-harden_linux_deploy_user_uid: 9999
-harden_linux_deploy_user_shell: "/bin/bash"
+# Some default settings for users
+harden_linux_default_shell: "/bin/bash"
 
 # Packages required by this role
 harden_linux_required_packages:

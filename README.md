@@ -1,6 +1,10 @@
 ansible-role-harden-linux
 =========================
 
+This is a fork of the awesome
+[githubixx.harden-linux](https://github.com/githubixx/ansible-role-harden-linux) role, which adds
+multiple user support and support for getting ssh public keys from Github.
+
 This Ansible role was mainly created for [Kubernetes the not so hard way with Ansible - Harden the instances](https://www.tauceti.blog/post/kubernetes-the-not-so-hard-way-with-ansible-harden-the-instances//). But it can be used also standalone of course to harden Linux (targeting Ubuntu 16.04/18.04 mainly at the moment). It has the following features:
 
 - Change root password
@@ -62,12 +66,13 @@ The following variables don't have defaults. You need to specify them either in 
 
 ```
 harden_linux_root_password: your_encrypted_password_here
+harden_linux_users:
+	- name: john
+	  github_user: doejohn
+	- name: marry
+	  key_file: ./marrys_public_keys
+		shell: /usr/bin/fish
 
-harden_linux_deploy_user: deploy
-harden_linux_deploy_user_password: your_encrypted_password_here
-harden_linux_deploy_user_home: /home/deploy
-harden_linux_deploy_user_public_keys:
-  - /home/your_user/.ssh/id_rsa.pub
 ```
 
 With `harden_linux_root_password` and `harden_linux_deploy_user_password` we specify the password for the `root` user and the `deploy` user. Ansible won't encrypt the password for you. To create a encrypted password you can do so e.g. with `python -c 'import crypt; print crypt.crypt("This is my Password", "$1$SomeSalt$")'` (You may need `python2` instead of `python` in case of Archlinux e.g.).
@@ -212,4 +217,4 @@ GNU GENERAL PUBLIC LICENSE Version 3
 Author Information
 ------------------
 
-[www.tauceti.blog](https://www.tauceti.blog)
+[pascal-riesinger.de](https://pascal-riesinger.de)

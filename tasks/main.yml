@@ -10,16 +10,19 @@
   tags:
     - apt
 
-- name: Install aptitude
-  apt:
-    pkg: aptitude
-    state: present
-  tags:
-    - apt
-
 - name: Upgrade APT to the latest packages
   apt:
     upgrade: safe
+
+- name: Set language
+  locale_gen:
+    name: "{{harden_linux_language}}"
+    state: present
+
+- name: Remove german language (for netcup servers)
+  locale_gen:
+    name: de_DE.UTF-8
+    state: absent
 
 - name: Install required packages
   apt:

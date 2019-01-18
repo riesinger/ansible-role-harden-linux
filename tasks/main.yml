@@ -178,3 +178,21 @@
   when: harden_linux_root_password is defined
   tags:
     - user
+
+- name: Journald SystemMaxFileSize
+  lineinfile:
+    path: "/etc/systemd/journald.conf"
+    line: "SystemMaxFileSize={{ harden_linux_max_logfile_size }}"
+    regexp: ".?SystemMaxFileSize.*"
+    state: present
+  tags:
+    - journal
+
+- name: Journald SystemMaxUse
+  lineinfile:
+    path: "/etc/systemd/journald.conf"
+    line: "SystemMaxUse={{ harden_linux_system_log_size }}"
+    regexp: ".?SystemMaxUse.*"
+    state: present
+  tags:
+    - journal

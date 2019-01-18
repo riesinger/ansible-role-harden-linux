@@ -102,3 +102,6 @@ harden_linux_ufw_defaults:
 harden_linux_ufw_logging: 'off'
 
 harden_linux_language: 'en_US.UTF-8'
+
+harden_linux_max_system_log_size: '100M'
+harden_linux_max_logfile_size: '20M'

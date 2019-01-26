@@ -197,7 +197,7 @@
 - name: Journald SystemMaxUse
   lineinfile:
     path: "/etc/systemd/journald.conf"
-    line: "SystemMaxUse={{ harden_linux_system_log_size }}"
+    line: "SystemMaxUse={{ harden_linux_max_system_log_size }}"
     regexp: ".?SystemMaxUse.*"
     state: present
   tags:

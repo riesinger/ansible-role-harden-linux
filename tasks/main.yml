@@ -51,7 +51,7 @@
 - name: Add authorized keys for users from Github
   authorized_key:
     user: "{{ item.name }}"
-    key: "{{ lookup('url', 'https://github.com/'+item.github_user+'.keys') }}"
+    key: "https://github.com/{{ item.github_user }}.keys"
   loop: "{{ harden_linux_users }}"
   when: item.github_user is defined
   tags:

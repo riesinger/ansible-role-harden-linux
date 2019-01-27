@@ -3,6 +3,11 @@
     path: /root/.pw
     state: absent
 
+- name: Setup /etc/hosts
+  template:
+    dest: "/etc/hosts"
+    src: "hosts.j2"
+
 - name: Update APT package cache
   apt:
     update_cache: true
